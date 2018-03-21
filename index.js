@@ -35,7 +35,7 @@ io.on("connection", function(socket){
     socket.on("answer", function(data){
               var msg = "wrong!"
               if(allRooms[socket.myRoom].q.a == data){
-                    msg = "you got it!!";
+                    msg = "you got it!";
               
               }
               
