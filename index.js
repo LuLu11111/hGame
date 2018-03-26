@@ -25,18 +25,6 @@ io.on("connection", function(socket){
     socket.on("qsubmit", function(data){
         //tell everybody there's a new question
         console.log(data);
-         request.post({
-    uri:"http://sugarlabvan.ca/postart/server.php",
-    form:{
-        name:data
-    }
-             },(err, resp, body)=>{
-
-              
-    console.log(err,resp,body);
-});
-        
-        
         allRooms[socket.myRoom].q =data;
         socket.to(socket.myRoom).emit("newq", data);   
         
