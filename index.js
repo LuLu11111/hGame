@@ -1,6 +1,6 @@
 const port = process.env.PORT || 10009;
 const server= require("http").Server();
-
+var request = require("request");
 var io = require("socket.io")(server);
 
 var allRooms ={};
@@ -26,21 +26,6 @@ io.on("connection", function(socket){
         //tell everybody there's a new question
         console.log(data);
         allRooms[socket.myRoom].q =data;
-        
-         request.post({
-    uri:"http://sugarlabvan.ca/postart/server.php",
-    form:{
-        name:data
-    }
-             },(err, resp, body)=>{
-
-              
-    console.log(err,resp,body);
-});
-        
-        
-        
-        
         socket.to(socket.myRoom).emit("newq", data);   
         
         
