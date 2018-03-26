@@ -23,11 +23,10 @@ io.on("connection", function(socket){
     });
     
     socket.on("qsubmit", function(data){
-        //tell everybody there's a new question
+    
         console.log(data);
         allRooms[socket.myRoom].q =data;
         socket.to(socket.myRoom).emit("newq", data);   
-        
         
     });
     
